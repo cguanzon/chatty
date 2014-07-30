@@ -2,5 +2,10 @@
 
 angular.module('chattyApp')
   .controller('MessageCtrl', function ($scope) {
-    $scope.messages = [];
+
+    MessageService.getMessages().then(function(data) {
+	  $scope.messages = data;
+	});
+
+
   });
