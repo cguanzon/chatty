@@ -1,11 +1,22 @@
 'use strict';
 
 angular.module('chattyApp')
-  .controller('MessageCtrl', function ($scope) {
+  .controller('MessageCtrl', function ($scope, MessageService) {
 
-    MessageService.getMessages().then(function(data) {
-	  $scope.messages = data;
-	});
+    $scope.getMessages = function(){
+    	MessageService.getMessages().then(function(res) {
+	  		$scope.messages = res.data;
+		});
+    };
 
+    $scope.addMessage = function(){
+    	MessageService.postMessage($scope.newMessage)
+    		.then(function(){
+    			$scope.getMessages();
+    			debugger;
+    			$scope.newMessage = '';
+    		});
+    };
+    $scope.getMessages();
 
   });

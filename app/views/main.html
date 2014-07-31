@@ -4,8 +4,12 @@
 
 <h4>Latest Chats:</h4>
 <div class="jumbotron" ng-controller="MessageCtrl">
+	<input ng-enter="addMessage()" ng-model="newMessage">
+
 	<ul>
-		<li ng-repeat="message in $scope.messages">{{message.message}}</li>
+		<li ng-repeat="message in messages">
+			{{message.message}} at {{message.timeStamp | date}}
+		</li>
 	</ul>
 
 </div>
